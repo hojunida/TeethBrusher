@@ -2,11 +2,13 @@ package com.ahy9ng.teethbrusher;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -28,7 +31,7 @@ public class MainActivity extends Activity implements SensorEventListener{
     Long prevTime;
     Long currentTime;
     public static LinearLayout ll;
-
+    boolean b = true;
     ArrayList<Double> x,y,z;
     String outfile = "data";
     FileOutputStream outputStream;
@@ -113,6 +116,15 @@ public class MainActivity extends Activity implements SensorEventListener{
 
         } catch (Exception e){
             e.printStackTrace();
+        }
+
+
+        if(b){
+            b = false;
+            Toast toast = Toast.makeText(getApplicationContext(), "You \'re brushing your teeth! What a good kid.", Toast.LENGTH_SHORT);
+            toast.show();
+            Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            v.vibrate(300);
         }
 
 //        Log.e("",x.toString());

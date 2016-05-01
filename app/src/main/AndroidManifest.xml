@@ -3,7 +3,7 @@
     package="com.ahy9ng.teethbrusher" >
 
     <uses-feature android:name="android.hardware.type.watch" />
-
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -17,6 +17,22 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".DisplayMessageActivity"
+            android:label="@string/title_activity_display_message"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ahy9ng.teethbrusher.MainActivity" />
+        </activity>
+        <activity
+            android:name=".DisplayMessageActivity2"
+            android:label="@string/title_activity_display_message_activity2"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ahy9ng.teethbrusher.MainActivity" />
         </activity>
     </application>
 
