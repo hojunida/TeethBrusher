@@ -106,7 +106,8 @@ public class MainActivity extends Activity implements SensorEventListener{
         double std_z = getStdDev(z);
         //Log.e("", (mean_x + " " + std_x + " " + mean_y + " " + std_y + " " + mean_z + " " + std_z));
         try {
-            outputStream.write((mean_x + " " + std_x + " " + mean_y + " " + std_y + " " + mean_z + " " + std_z).getBytes());
+            outputStream.write((mean_x + " " + std_x + " " + mean_y + " " + std_y + " " + mean_z + " " + std_z +  " brushing \n").getBytes());
+
         } catch (Exception e){
             e.printStackTrace();
         }
