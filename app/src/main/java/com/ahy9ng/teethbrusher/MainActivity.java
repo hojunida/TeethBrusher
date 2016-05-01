@@ -1,6 +1,9 @@
 package com.ahy9ng.teethbrusher;
 import java.util.ArrayList;
 import java.util.Timer;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
 
 import android.app.Activity;
 import android.content.Context;
@@ -69,6 +72,20 @@ public class MainActivity extends Activity implements SensorEventListener{
         Log.e("",y.toString());
         Log.e("",z.toString());
     }
+    public void getInternalTextFileString(){
+        try {
+            FileInputStream inStream = this.openFileInput("myStringFile");
+            InputStreamReader inputStreamReader = new InputStreamReader(inStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            StringBuilder finalString = new StringBuilder(); String oneLine;
+            while ((oneLine = bufferedReader.readLine()) != null) {
+                finalString.append(oneLine);
+            }
+            bufferedReader. close();
+            inStream. close();
+            inputStreamReader. close();
+            //textView. setVisibility(View.VISIBLE); textView.setText(finalString.toString());
+    } catch (Exception e) { e.printStackTrace(); } }
 
 
 }
