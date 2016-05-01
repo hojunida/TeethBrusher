@@ -1,7 +1,4 @@
 package com.ahy9ng.teethbrusher;
-import java.util.ArrayList;
-import java.util.Timer;
-
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
@@ -9,13 +6,11 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.util.Log;
+
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 public class MainActivity extends Activity implements SensorEventListener{
     public boolean init = false;
@@ -26,7 +21,8 @@ public class MainActivity extends Activity implements SensorEventListener{
     public static LinearLayout ll;
 
     ArrayList<Double> x,y,z;
-
+    String outfile = "data";
+    FileOutputStream outputStream;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +34,12 @@ public class MainActivity extends Activity implements SensorEventListener{
         x = new ArrayList<Double>();
         y = new ArrayList<Double>();
         z = new ArrayList<Double>();
+        try {
+            outputStream = openFileOutput(outfile, CONTEXT_IGNORE_SECURITY);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 
 
@@ -64,10 +66,17 @@ public class MainActivity extends Activity implements SensorEventListener{
 
     }
 
-    public void classify(ArrayList<Double> x,ArrayList<Double> y,ArrayList<Double> z){
-        Log.e("",x.toString());
-        Log.e("",y.toString());
-        Log.e("",z.toString());
+    public void classify(ArrayList<Double> x,ArrayList<Double> y,ArrayList<Double> z) {
+        Log.e("", getApplicationContext().getFilesDir().getAbsolutePath());
+        try {
+            outputStream.write((x.toString() + " " + y.toString() + " " + z.toString()).getBytes());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+//        Log.e("",x.toString());
+//        Log.e("",y.toString());
+//        Log.e("",z.toString());
     }
 
 
